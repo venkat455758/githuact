@@ -1,11 +1,19 @@
-name: CICD
-on: [push,pull_request]
+name: Node CI
+
+on: push
+
 jobs:
-  input-demo:
+  test:
     runs-on: ubuntu-latest
+
     steps:
-      - name: c1
-        run: |
-          echo "thus us "
-          echo "numeric thing"
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 18
+
+      - run: npm install
+      - run: npm test
+
           
