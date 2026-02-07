@@ -1,0 +1,11 @@
+name: CICD
+on: push
+jobs:
+  input-demo:
+    runs-on: ubuntu-latest
+    steps:
+      - name: c1
+        run: |
+          echo "thus us "
+          echo "numeric thing"
+          
