@@ -1,19 +1,22 @@
-name: Node CI
-
-on: push
-
+name: conditions
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    types:
+      - opened
+      - synchronize
 jobs:
-  test:
+  demo:
     runs-on: ubuntu-latest
-
+    if: github.event_name == 'pull_request'
     steps:
-      - uses: actions/checkout@v4
-
-      - uses: actions/setup-node@v4
-        with:
-          node-version: 18
-
-      - run: npm install
-      - run: npm test
-
-          
+      - name: Buils step
+        run: echo "Building the app"
+  deploy:
+    runs-on: ubuntu-latest
+    if: github.event_name == 'push'
+    steps:
+      - name: Deploy steps
+        run: echo "DEploying sucess"
